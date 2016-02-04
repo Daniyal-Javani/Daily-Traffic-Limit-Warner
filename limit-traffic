@@ -1,0 +1,12 @@
+unit=$(vnstat -s -i ppp0 | sed -n 6p |  awk '{ print $9 $7 }' | head -c 1)
+amount=$(vnstat -s -i ppp0 | sed -n 6p |  awk '{ print $8 $7 }' | rev | cut -c 2- | rev)
+max=34
+if [ "$unit" == 'M' ]; then
+	if (( $(echo "$amount > $max" |bc -l) )); then
+		if ! [ -f "/home/vahid/bash/dialogue" ]; then
+			touch /home/vahid/bash/dialogue
+			zenity --error --text="The limit is reached" --display=:0.0
+			rm /home/vahid/bash/dialogue
+		fi
+	fi
+fi
