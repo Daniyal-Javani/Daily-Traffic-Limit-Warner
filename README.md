@@ -10,7 +10,7 @@ sudo apt-get install vnstat
 
 - Run `crontab -e` and copy the follow line into it
 ```
-* * * * * env DISPLAY=:0 bash /home/vahid/bash/limit-traffic >/dev/null 2>&1
+* * * * * env DISPLAY=:0 bash PATH_TO/limit-traffic >/dev/null 2>&1
 ```
 
 - Set limit quote in `max` variable in MB
